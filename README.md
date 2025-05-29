@@ -172,7 +172,7 @@ Selanjutnya, akan dilakukan proses analisis data dengan teknik Univariate Analys
 
   ![image](https://github.com/user-attachments/assets/cb634c65-4ba7-4ba0-b5c8-f86cba92b21a)
 
-  Berdasarkan analisis sentimen dari rekomedasi dan repurchase, terlihat bahwa produk yang direkomendasikan dan dibeli ulang oleh pelanggan menunjukkan total yang paling tinggi dibandingkan jumlah produk yang mungkin akan dibeli ulang dan jumlah produk yang tidak akan dibeli lagi. Tingginya jumlah produk yang direkomendasikan dan dibeli ulang menunjukkan bahwa produk-produk ini memiliki kualitas dan kepuasan pelanggan yang tinggi. Dalam content-based filtering, hal ini berarti bahwa fitur deskriptif seperti kategori, bahan, dan nama produk yang sering dibeli ulang dapat digunakan untuk merekomendasikan produk dengan karakteristik serupa kepada pelanggan baru. Di sisi lain, dalam collaborative filtering, pola interaksi dari pelanggan yang sering membeli ulang produk tertentu dapat menjadi dasar untuk merekomendasikan produk-produk yang sama atau produk lain yang memiliki pola pembelian serupa di antara pelanggan dengan preferensi yang mirip.
+  Berdasarkan analisis sentimen dari rekomedasi dan repurchase, terlihat bahwa produk yang direkomendasikan dan dibeli ulang oleh pelanggan menunjukkan total yang paling tinggi dibandingkan jumlah produk yang mungkin akan dibeli ulang dan jumlah produk yang tidak akan dibeli lagi. Tingginya jumlah produk yang direkomendasikan dan dibeli ulang menunjukkan bahwa produk-produk ini memiliki kualitas dan kepuasan pelanggan yang tinggi. Dalam content-based filtering, hal ini berarti bahwa fitur deskriptif seperti kategori, merek, dan nama produk yang sering dibeli ulang dapat digunakan untuk merekomendasikan produk dengan karakteristik serupa kepada pelanggan baru. Di sisi lain, dalam collaborative filtering, pola interaksi dari pelanggan yang sering membeli ulang produk tertentu dapat menjadi dasar untuk merekomendasikan produk-produk yang sama atau produk lain yang memiliki pola pembelian serupa di antara pelanggan dengan preferensi yang mirip.
 
 - **Analisis Brand Populer**
 
@@ -188,12 +188,12 @@ Selanjutnya, akan dilakukan proses analisis data dengan teknik Univariate Analys
   ![image](https://github.com/user-attachments/assets/e9d09b0a-2f7c-4124-957a-0c12d1a10b1b)
 
   Berdasarkan heatmap correlation, dapat diketahui bahwa:
-  1. **Korelasi Tinggi pada Fitur Tertentu**:
+  **1. Korelasi Tinggi pada Fitur Tertentu**:
      - Terdapat korelasi yang sangat tinggi antara total_recommended_count dan **total_reviews** (korelasi positif sangat kuat dengan nilai 1), ini menunjukkan bahwa produk yang paling banyak direkomendasikan cenderung memiliki jumlah review yang tinggi juga.
      - Terdapat korelasi yang sangat tinggi antara total_repurchase_yes_count dan total_recommended_count (nilai korelasi mendekati 1). Hal ini menunjukkan bahwa produk yang sering direkomendasikan cenderung lebih banyak dibeli kembali oleh pengguna. Selain itu, Korelasi tinggi juga terlihat antara total_reviews dan variabel terkait repurchase behavior (yes/maybe/no count), yang menunjukkan bahwa jumlah ulasan dapat menjadi indikator penting untuk perilaku pembelian ulang.
-  2. **Korelasi Lemah pada Beberapa Fitur**:
+  **2. Korelasi Lemah pada Beberapa Fitur**:
      - Fitur seperti beauty_point_earned dan average_rating memiliki korelasi lemah terhadap sebagian besar fitur lain. Sehingga untuk beauty_point_earned akan dilakukan drop kolom. Sedangkan, untuk fitur average_rating tidak dilakukan drop kolom karena meskipun korelasinya lemah, kolom ini tetap penting untuk membangun sistem rekomendasi, terutama dalam pendekatan Content-based Filtering, yang memerlukan atribut produk untuk merepresentasikan karakteristiknya.
-  3. **Drop Kolom yang Tidak Berguna**:
+  **3. Drop Kolom yang Tidak Berguna**:
      - Proses pembersihan data tetap dilakukan untuk memastikan efisiensi dan efektivitas dalam membangun sistem rekomendasi. Hanya fitur yang tidak berkontribusi terhadap pendekatan Content-based Filtering atau Collaborative Filtering yang akan dihapus, sementara fitur lainnya tetap dipertahankan karena relevansinya terhadap problem statement dan tujuan proyek.
      - Kolom-kolom yang tidak relevan dengan pendekatan Content-based Filtering (berbasis atribut produk) atau Collaborative Filtering (berbasis interaksi pengguna) akan dihapus, seperti beauty_point_earned, url, price_by_combinations, active_date, categories, average_rating_by_types dan rating_types_str dapat di-drop karena tidak berkontribusi langsung pada pembentukan rekomendasi.
      - Kolom yang tetap dipertahankan adalah yang berkaitan dengan atribut produk (brand_name, product_id, product_name, price_range,	default_category) atau interaksi pengguna (total_reviews, total_recommended_count, total_repurchase_maybe_count,	total_repurchase_no_count,	total_repurchase_yes_count	dan total_in_wishlist).
