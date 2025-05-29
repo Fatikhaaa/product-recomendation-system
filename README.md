@@ -93,7 +93,8 @@ Berikut ini kode yang digunakan untuk menghitung jumlah row dan column:
 
 ```python 
 # Menampilkan jumlah row dan column (ukuran shape)
-products.shape```
+products.shape
+```
 
 ![image](https://github.com/user-attachments/assets/20c83898-aeab-496b-b1d9-e8c7a70f0357)
 
@@ -105,6 +106,7 @@ Berdasarkan dari informasi diatas, dapat diketahui bahwa dataset terdiri dari 76
 # Menampilkan statistik deskriptif dari dataset untuk kolom numerik
 products.describe()
 ```
+
 | Statistic    | product_id    | beauty_point_earned | average_rating | total_reviews | total_recommended_count | total_repurchase_maybe_count | total_repurchase_no_count | total_repurchase_yes_count | total_in_wishlist |
 |--------------|---------------|---------------------|----------------|---------------|--------------------------|------------------------------|----------------------------|----------------------------|-------------------|
 | count        | 7636.000000   | 7636.000000         | 7636.000000    | 7636.000000   | 7636.000000              | 7636.000000                  | 7636.000000                | 7636.000000                | 7636.000000       |
