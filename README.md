@@ -188,12 +188,18 @@ Selanjutnya, akan dilakukan proses analisis data dengan teknik Univariate Analys
   ![image](https://github.com/user-attachments/assets/e9d09b0a-2f7c-4124-957a-0c12d1a10b1b)
 
   Berdasarkan heatmap correlation, dapat diketahui bahwa:
+  
   **1. Korelasi Tinggi pada Fitur Tertentu**:
+  
      - Terdapat korelasi yang sangat tinggi antara total_recommended_count dan **total_reviews** (korelasi positif sangat kuat dengan nilai 1), ini menunjukkan bahwa produk yang paling banyak direkomendasikan cenderung memiliki jumlah review yang tinggi juga.
      - Terdapat korelasi yang sangat tinggi antara total_repurchase_yes_count dan total_recommended_count (nilai korelasi mendekati 1). Hal ini menunjukkan bahwa produk yang sering direkomendasikan cenderung lebih banyak dibeli kembali oleh pengguna. Selain itu, Korelasi tinggi juga terlihat antara total_reviews dan variabel terkait repurchase behavior (yes/maybe/no count), yang menunjukkan bahwa jumlah ulasan dapat menjadi indikator penting untuk perilaku pembelian ulang.
+       
   **2. Korelasi Lemah pada Beberapa Fitur**:
+  
      - Fitur seperti beauty_point_earned dan average_rating memiliki korelasi lemah terhadap sebagian besar fitur lain. Sehingga untuk beauty_point_earned akan dilakukan drop kolom. Sedangkan, untuk fitur average_rating tidak dilakukan drop kolom karena meskipun korelasinya lemah, kolom ini tetap penting untuk membangun sistem rekomendasi, terutama dalam pendekatan Content-based Filtering, yang memerlukan atribut produk untuk merepresentasikan karakteristiknya.
+       
   **3. Drop Kolom yang Tidak Berguna**:
+  
      - Proses pembersihan data tetap dilakukan untuk memastikan efisiensi dan efektivitas dalam membangun sistem rekomendasi. Hanya fitur yang tidak berkontribusi terhadap pendekatan Content-based Filtering atau Collaborative Filtering yang akan dihapus, sementara fitur lainnya tetap dipertahankan karena relevansinya terhadap problem statement dan tujuan proyek.
      - Kolom-kolom yang tidak relevan dengan pendekatan Content-based Filtering (berbasis atribut produk) atau Collaborative Filtering (berbasis interaksi pengguna) akan dihapus, seperti beauty_point_earned, url, price_by_combinations, active_date, categories, average_rating_by_types dan rating_types_str dapat di-drop karena tidak berkontribusi langsung pada pembentukan rekomendasi.
      - Kolom yang tetap dipertahankan adalah yang berkaitan dengan atribut produk (brand_name, product_id, product_name, price_range,	default_category) atau interaksi pengguna (total_reviews, total_recommended_count, total_repurchase_maybe_count,	total_repurchase_no_count,	total_repurchase_yes_count	dan total_in_wishlist).
@@ -216,13 +222,14 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
   ```
 
   Berikut ini detail mengenai kolom-kolom yang akan di-drop karena tidak terlalu berpengaruh dalam membangun sistem rekomendasi berbasis Content-based Filtering (berdasarkan atribut produk) dan Collaborative Filtering (berdasarkan interaksi pengguna) yaitu:
-  - **beauty_point_earned** : kolom ini terkait dengan program loyalitas atau poin yang diperoleh pengguna, yang tidak secara langsung berkontribusi pada algoritma Content-based (berdasarkan atribut produk) atau Collaborative Filtering (berdasarkan interaksi pengguna).
-  - **price_by_combinations**: meskipun harga bisa menjadi faktor dalam keputusan pembelian, dalam konteks dasar Content-based dan Collaborative Filtering, detail harga spesifik atau range harga biasanya tidak menjadi fitur utama. Rekomendasi lebih berfokus pada kesamaan produk atau preferensi pengguna.
-  - **url**: URL produk tidak diperlukan untuk membangun model rekomendasi dan ini lebih relevan untuk display atau navigasi setelah rekomendasi dibuat.
-  - **categories**: kolom ini memiliki kemiripan dengan kolom default_category yang secara tidak langsung juga terwakili dengan kolom tersebut, sehingga tidak terlalu berpengaruh apabila didrop.
-  - **active_date**: tanggal aktif produk mungkin berguna untuk analisis tren atau produk baru, tetapi tidak esensial untuk model rekomendasi dasar yang berfokus pada kesamaan atau interaksi.
-  - **rating_types_str**: karena sudah ada average_rating dan total_reviews, detail rating types dalam bentuk string tidak diperlukan. Karena kolom tersebut tidak diperlukan dalam analisis pada tahap selanjutnya, maka kita perlu lakukan drop kolom.
-  - **average_rating_by_types**: karena sudah ada average_rating, detail rating types dalam bentuk string tidak diperlukan. Selain itu, terlihat pada pemeriksaan missing value pada tahap data understanding menunjukkan kolom ini memiliki banyak sekali nilai yang kosong sehingga apabila tidak didrop dapat berpengaruh dalam pemodelan. Dan karena kolom tersebut tidak diperlukan dalam analisis pada tahap selanjutnya, maka kita perlu lakukan drop kolom.
+  
+  - *beauty_point_earned* : kolom ini terkait dengan program loyalitas atau poin yang diperoleh pengguna, yang tidak secara langsung berkontribusi pada algoritma Content-based (berdasarkan atribut produk) atau Collaborative Filtering (berdasarkan interaksi pengguna).
+  - *price_by_combinations*: meskipun harga bisa menjadi faktor dalam keputusan pembelian, dalam konteks dasar Content-based dan Collaborative Filtering, detail harga spesifik atau range harga biasanya tidak menjadi fitur utama. Rekomendasi lebih berfokus pada kesamaan produk atau preferensi pengguna.
+  - *url*: URL produk tidak diperlukan untuk membangun model rekomendasi dan ini lebih relevan untuk display atau navigasi setelah rekomendasi dibuat.
+  - *categories*: kolom ini memiliki kemiripan dengan kolom default_category yang secara tidak langsung juga terwakili dengan kolom tersebut, sehingga tidak terlalu berpengaruh apabila didrop.
+  - *active_date*: tanggal aktif produk mungkin berguna untuk analisis tren atau produk baru, tetapi tidak esensial untuk model rekomendasi dasar yang berfokus pada kesamaan atau interaksi.
+  - *rating_types_str*: karena sudah ada average_rating dan total_reviews, detail rating types dalam bentuk string tidak diperlukan. Karena kolom tersebut tidak diperlukan dalam analisis pada tahap selanjutnya, maka kita perlu lakukan drop kolom.
+  - *average_rating_by_types*: karena sudah ada average_rating, detail rating types dalam bentuk string tidak diperlukan. Selain itu, terlihat pada pemeriksaan missing value pada tahap data understanding menunjukkan kolom ini memiliki banyak sekali nilai yang kosong sehingga apabila tidak didrop dapat berpengaruh dalam pemodelan. Dan karena kolom tersebut tidak diperlukan dalam analisis pada tahap selanjutnya, maka kita perlu lakukan drop kolom.
   
 - **Penanganan Missing Value**
 
@@ -252,7 +259,9 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
 ### Preparation Content-Based Filtering
 
 - **Konversi Data Series dalam Bentuk List**
+  
   Selanjutnya yaitu mengonversi data series menjadi list, yang akan memudahkan dalam membuat dataframe baru atau mengolah data lebih lanjut. Dalam hal ini, akan mengonversi kolom-kolom seperti brand_name, product_name, dan default_category ke dalam list.
+  
   ```python # Mengonversi data series ‘brand_name’ menjadi dalam bentuk list
   brand_name = products['brand_name'].tolist()
   
@@ -268,12 +277,14 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
   ```
 
   Tahapan di atas dilakukan untuk mengonversi kolom-kolom data series dari dataset ke dalam bentuk list, yaitu kolom **`brand_name`**, **`product_name`**, dan **`default_category`**. Langkah ini bertujuan untuk mempermudah proses manipulasi data pada tahapan selanjutnya, seperti membuat dataframe baru, mengolah data lebih lanjut, atau melakukan operasi khusus pada elemen-elemen dalam setiap kolom. Dengan mengonversi data series menjadi list, kita dapat:
+  
   1. **Fleksibilitas Pengolahan Data**: List menyediakan fleksibilitas yang lebih besar dibandingkan dengan data series dalam hal iterasi dan penerapan fungsi Python biasa.
   2. **Kompatibilitas dengan Fungsi dan Algoritma Lain**: Banyak algoritma atau fungsi dalam Python (terutama yang tidak menggunakan Pandas) lebih kompatibel dengan struktur list daripada data series.
   3. **Mempermudah Transformasi Data**: Untuk langkah-langkah seperti tokenisasi, pembuatan bag-of-words, atau proses lainnya yang memerlukan iterasi per elemen, list mempermudah implementasinya.
   Langkah terakhir pada kode tersebut mencetak jumlah elemen dalam setiap list untuk memastikan bahwa semua kolom yang dikonversi memiliki panjang yang sama, sehingga dapat meminimalkan risiko ketidaksesuaian data selama proses pengolahan selanjutnya.
 
 - **Membuat Dataframe baru**
+  
   Tahap berikutnya yaitu membuat dictionary untuk menentukan pasangan key-value pada data brand_name, product_name dan default_category yang telah disiapkan pada tahap sebelumnya. Dimana tahapan ini untuk menggabungkan data brand_name, product_name dan default_category menjadi satu DataFrame baru yang siap digunakan untuk model sistem rekomendasi berbasis konten. Kode yang digunakan sebagai berikut:
 
   ```python # Membuat dictionary untuk data ‘brand_name’, ‘product_name’, dan ‘default_category’
@@ -303,6 +314,7 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
   ![image](https://github.com/user-attachments/assets/322355da-5cea-4e55-a4cb-67d5b3b78593)
 
   Terlihat bahwa data duplikasi telah berhasil ditangani, maka bisa dilanjutkan untuk tahap selanjutnya.
+  
   
 - **TF-IDF Vectorizer**
 
@@ -339,6 +351,7 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
 
 ### Persiapan Collaborative Filtering
 - **Encoding Data**
+  
   Tahapan encoding data bertujuan untuk mengubah nilai kategoris pada kolom **`brand_name_id`** menjadi representasi numerik yang unik. Langkah ini dimulai dengan mengambil nilai unik dari kolom tersebut menggunakan fungsi **`unique()`**, kemudian membuat mapping dua arah: dari **`brand_name_id`** ke angka unik (**`brand_to_brand_encoded`**) dan sebaliknya (**`brand_encoded_to_brand`**). Proses encoding ini penting untuk memastikan kompatibilitas data dengan algoritma machine learning yang umumnya bekerja dengan data numerik. Selain itu, representasi numerik mempermudah pengolahan data, mempercepat komputasi, dan memungkinkan interpretasi hasil model dengan mudah melalui mapping balik ke nilai kategoris asli. Berikut adalah kode yang digunakan:
 
   ```python # Mengubah brand_name_id menjadi list tanpa nilai yang sama
@@ -355,6 +368,7 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
   ```
   
 - **Memetakan brand_name_id dan product_id ke Dataframe yang Berkaitan**
+  
   Selanjutnya, dilakukan pemetaan 'brand_name_id' dan 'product_id' ke kolom baru 'brand' dan 'product' dalam DataFrame. Kolom 'brand' dibuat dengan memetakan setiap 'brand_name_id' asli ke representasi integer yang telah di-encode menggunakan kamus brand_to_brand_encoded, sementara kolom 'product' dihasilkan dengan memetakan 'product_id' asli ke integer yang di-encode menggunakan kamus product_to_product_encoded. Berikut kode yang digunakan dalam proses ini:
   
   ```python # Mapping brand_name_id ke dataframe user
@@ -392,6 +406,7 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
   Penentuan rentang rating ini penting untuk memahami distribusi data rating dan memastikan bahwa model memiliki informasi yang akurat mengenai batas-batas nilai yang mungkin diprediksi atau dianalisis.
 
 - **Membagi Data untuk Training dan Validasi**
+  
   Selanjutnya, perlu melakukan splitting data menjadi training dan validasi. Namun sebelum melakukan itu, perlu dilakukan pengacakan seluruh data secara menyeluruh. Hal ini penting untuk dilakukan untuk memastikan bahwa saat data nanti dibagi, bagian-bagian data pelatihan dan pengujian memiliki campuran informasi yang merata. Jika tidak diacak, model bisa belajar pola yang salah karena data yang berdekatan mungkin memiliki karakteristik yang mirip. Berikut hasil dari acak data:
 
   | brand_name_id | brand_name         | product_name                                    | product_id | price_range   | default_category    | average_rating | total_reviews | total_recommended_count | total_repurchase_maybe_count | total_repurchase_no_count | total_repurchase_yes_count | total_in_wishlist | brand | product |
@@ -424,9 +439,11 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
 - **Proses Content-Based Filtering**
 
   1. **Perhitungan Cosine Similarity**
+     
      Cosine Similarity digunakan untuk mengukur tingkat kemiripan antar produk berdasarkan representasi fitur dalam ruang vektor. Semakin tinggi nilai Cosine Similarity, semakin mirip dua produk tersebut. Fungsi `cosine_similarity()` digunakan untuk menghitung matriks kesamaan antar produk dalam dataset. Matriks ini menunjukkan hubungan antara semua produk, baik dalam sumbu X maupun Y.
   
-  2. **Penyusunan Matriks Cosine Similarity**
+  3. **Penyusunan Matriks Cosine Similarity**
+     
      Hasil perhitungan Cosine Similarity diubah menjadi sebuah DataFrame untuk mempermudah analisis dan pencarian produk-produk yang paling mirip. Baris dan kolom pada DataFrame ini mewakili produk, sementara nilai di dalamnya menunjukkan tingkat kemiripan antar produk.
 
     | **product_name**                                                | MULTI EYE COLOR PALETTE | Heartleaf Essence Calming Pump | Licorice pH Balancing Cleansing Toner | Noni Glow Concentrate | Nudie Blendies - Makeup Sponge | Glazed Lip Tint | 01 Powder Room Eau De Parfum | Shake Lip Pigment (SLP) - Matte Liquid Lipstick, Serum-Infused | DEW POWER VEGAN CUSHION | New Brightening Uv Sunscreen Gel |
@@ -445,11 +462,13 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
     _Matriks ini menunjukkan tingkat kemiripan antar produk berdasarkan fitur konten. Semakin tinggi nilai (mendekati 1), semakin mirip kedua produk tersebut._
   
   4. **Penyaringan Data**
+     
      Produk-produk dengan nilai kemiripan tertinggi disaring sebagai kandidat untuk direkomendasikan kepada pengguna. Hasil ini disesuaikan dengan produk yang sudah pernah diinteraksikan oleh pengguna untuk menghindari duplikasi.
 
   Dengan menggunakan cosine similarity, sistem berhasil mengukur tingkat kemiripan antara satu nama produk dengan produk lainnya. Matriks kesamaan yng dihasilkan berukuran (321, 321). Matriks ini merepresentasikan tingkat kesamaan antar 321 produk. Karena ukurannya besar, hanya ditampilkan sebanyak 10 sampel data saja, yaitu 10 produk secara vertikal dan 10 secara horizontal. Data ini digunakan untuk merekomendasikan produk yang mirip dengan yang pernah dibeli oleh pengguna. Contoh: angka 1 pada 01 Powder Room Eau De Parfum dan Secretly Sexy Eau De Parfum yang menunjukkan dua produk ini memiliki kesamaan kategori produk.
 
 - **Fungsi Rekomendasi Produk**
+  
   * Fungsi **product\_recommendation** dibuat untuk menghasilkan rekomendasi berbasis konten, dengan menampilkan daftar produk yang mirip dengan produk yang pernah dilihat atau dibeli oleh pengguna. Output dari fungsi ini berupa **Top-N recommendation**, di mana jumlah rekomendasi dapat diatur sesuai kebutuhan melalui parameter k. Fungsi ini mengidentifikasi sejumlah produk teratas dengan nilai kemiripan tertinggi terhadap produk yang diberikan sebagai input.
   * Untuk implementasi yang efisien, dengan mengimplementasikan fungsi `argpartition()` yang digunakan untuk mengekstrak nilai kemiripan tertinggi dari matriks Cosine Similarity. Nilai-nilai tersebut kemudian diurutkan berdasarkan bobot kemiripan dari yang paling tinggi ke rendah dan disimpan dalam variabel closest. Untuk menghindari duplikasi dalam hasil, judul buku yang dijadikan acuan (input) akan dihapus dari daftar rekomendasi agar tidak muncul kembali dalam hasil rekomendasi yang diberikan. Produk yang dijadikan input akan dikeluarkan (dihapus) dari hasil rekomendasi untuk menghindari duplikasi. Dengan pendekatan ini, sistem mampu memberikan rekomendasi yang relevan berdasarkan fitur dan karakteristik produk dalam dataset.
 
