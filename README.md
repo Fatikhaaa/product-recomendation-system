@@ -279,7 +279,9 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
   Tahapan di atas dilakukan untuk mengonversi kolom-kolom data series dari dataset ke dalam bentuk list, yaitu kolom **`brand_name`**, **`product_name`**, dan **`default_category`**. Langkah ini bertujuan untuk mempermudah proses manipulasi data pada tahapan selanjutnya, seperti membuat dataframe baru, mengolah data lebih lanjut, atau melakukan operasi khusus pada elemen-elemen dalam setiap kolom. Dengan mengonversi data series menjadi list, kita dapat:
   
   **1. Fleksibilitas Pengolahan Data**: List menyediakan fleksibilitas yang lebih besar dibandingkan dengan data series dalam hal iterasi dan penerapan fungsi Python biasa.
+  
   **2. Kompatibilitas dengan Fungsi dan Algoritma Lain**: Banyak algoritma atau fungsi dalam Python (terutama yang tidak menggunakan Pandas) lebih kompatibel dengan struktur list daripada data series.
+  
   **3. Mempermudah Transformasi Data**: Untuk langkah-langkah seperti tokenisasi, pembuatan bag-of-words, atau proses lainnya yang memerlukan iterasi per elemen, list mempermudah implementasinya.
   Langkah terakhir pada kode tersebut mencetak jumlah elemen dalam setiap list untuk memastikan bahwa semua kolom yang dikonversi memiliki panjang yang sama, sehingga dapat meminimalkan risiko ketidaksesuaian data selama proses pengolahan selanjutnya.
 
@@ -473,6 +475,7 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
   * Untuk implementasi yang efisien, dengan mengimplementasikan fungsi `argpartition()` yang digunakan untuk mengekstrak nilai kemiripan tertinggi dari matriks Cosine Similarity. Nilai-nilai tersebut kemudian diurutkan berdasarkan bobot kemiripan dari yang paling tinggi ke rendah dan disimpan dalam variabel closest. Untuk menghindari duplikasi dalam hasil, judul buku yang dijadikan acuan (input) akan dihapus dari daftar rekomendasi agar tidak muncul kembali dalam hasil rekomendasi yang diberikan. Produk yang dijadikan input akan dikeluarkan (dihapus) dari hasil rekomendasi untuk menghindari duplikasi. Dengan pendekatan ini, sistem mampu memberikan rekomendasi yang relevan berdasarkan fitur dan karakteristik produk dalam dataset.
 
 - **Output Rekomendasi**
+  
   Ketika pengguna memilih produk tertentu, maka sistem akan mencari produk-produk dengan kemiripan tertinggi terhadap produk tersebut berdasarkan nama produk, nama brand, dan kategori. Sehingga rekomendasi yang dihasilkan akan mencakup 10 produk yang paling mirip dengan produk yang dipilih.
   Misalnya, apabila pengguna memilih produk yaitu "Bakuchiol Revitalizing Serum", maka sistem akan memberikan rekomendasi seperti berikut ini:
 
@@ -482,20 +485,20 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
   
 - **Kelebihan Content-based Filtering**
   
-  **1. Personalized Recommendations**: Rekomendasi berbasis kesukaan pengguna terhadap produk tertentu, sehingga hasil lebih relevan dan sesuai dengan preferensi individu.
-  **2. Tidak Membutuhkan Data Pengguna Lain**: Hanya bergantung pada data konten produk, sehingga tetap berfungsi meskipun hanya ada satu pengguna dalam sistem.
-  **3. Fleksibilitas Fitur Produk**: Dapat memanfaatkan berbagai jenis atribut produk, seperti deskripsi, kategori, atau fitur tambahan, untuk menghasilkan rekomendasi yang lebih akurat.
-  **4. Skalabilitas pada Dataset Baru**: Model dapat dengan mudah merekomendasikan produk baru selama produk tersebut memiliki informasi konten yang lengkap.
-  **5. Menghindari Cold Start pada Pengguna**: Pengguna baru tetap mendapatkan rekomendasi berbasis produk yang mereka eksplorasi, tanpa perlu menunggu data interaksi yang banyak.
+  1. **Personalized Recommendations**: Rekomendasi berbasis kesukaan pengguna terhadap produk tertentu, sehingga hasil lebih relevan dan sesuai dengan preferensi individu.
+  2. **Tidak Membutuhkan Data Pengguna Lain**: Hanya bergantung pada data konten produk, sehingga tetap berfungsi meskipun hanya ada satu pengguna dalam sistem.
+  3. **Fleksibilitas Fitur Produk**: Dapat memanfaatkan berbagai jenis atribut produk, seperti deskripsi, kategori, atau fitur tambahan, untuk menghasilkan rekomendasi yang lebih akurat.
+  4. **Skalabilitas pada Dataset Baru**: Model dapat dengan mudah merekomendasikan produk baru selama produk tersebut memiliki informasi konten yang lengkap.
+  5. **Menghindari Cold Start pada Pengguna**: Pengguna baru tetap mendapatkan rekomendasi berbasis produk yang mereka eksplorasi, tanpa perlu menunggu data interaksi yang banyak.
   
 - **Kekurangan Content-Based Filtering**
   
-  **1. Kurangnya Keberagaman Rekomendasi (Over-Specialization)**: Sistem hanya merekomendasikan produk yang sangat mirip dengan yang sudah dipilih atau disukai, sehingga keberagaman produk yang disarankan cenderung rendah.
-  **2. Ketergantungan pada Kualitas Data Konten**: Jika data konten produk tidak lengkap atau tidak relevan, kualitas rekomendasi akan menurun.
-  **3. Tidak Bisa Merekomendasikan Produk Tanpa Interaksi Awal**: Sistem tidak dapat memberikan rekomendasi yang optimal jika pengguna belum memberikan preferensi atau data eksplisit terkait produk tertentu.
-  **4. Cold Start untuk Produk Baru Tanpa Deskripsi yang Memadai**: Produk baru dengan deskripsi yang kurang lengkap akan sulit masuk dalam sistem rekomendasi.
-  **5. Komputasi yang Intensif**: Membutuhkan perhitungan seperti Cosine Similarity yang memerlukan banyak sumber daya untuk dataset besar, terutama saat membuat matriks kemiripan.
-  **6. Sulit Menangkap Preferensi Kompleks**: Tidak dapat memahami preferensi yang tidak tersurat atau pola interaksi pengguna yang lebih kompleks (misalnya, konteks penggunaan).
+  1. **Kurangnya Keberagaman Rekomendasi (Over-Specialization)**: Sistem hanya merekomendasikan produk yang sangat mirip dengan yang sudah dipilih atau disukai, sehingga keberagaman produk yang disarankan cenderung rendah.
+  2. **Ketergantungan pada Kualitas Data Konten**: Jika data konten produk tidak lengkap atau tidak relevan, kualitas rekomendasi akan menurun.
+  3. **Tidak Bisa Merekomendasikan Produk Tanpa Interaksi Awal**: Sistem tidak dapat memberikan rekomendasi yang optimal jika pengguna belum memberikan preferensi atau data eksplisit terkait produk tertentu.
+  4. **Cold Start untuk Produk Baru Tanpa Deskripsi yang Memadai**: Produk baru dengan deskripsi yang kurang lengkap akan sulit masuk dalam sistem rekomendasi.
+  5. **Komputasi yang Intensif**: Membutuhkan perhitungan seperti Cosine Similarity yang memerlukan banyak sumber daya untuk dataset besar, terutama saat membuat matriks kemiripan.
+  6. **Sulit Menangkap Preferensi Kompleks**: Tidak dapat memahami preferensi yang tidak tersurat atau pola interaksi pengguna yang lebih kompleks (misalnya, konteks penggunaan).
 
 ### 2. Collaborative Filtering
 
@@ -503,19 +506,19 @@ Collaborative Filtering adalah pendekatan sistem rekomendasi yang memanfaatkan p
 
 - **Proses Collaborative Filtering**
   
-  **1. Model Embedding untuk Pengguna dan Produk**
+  1. **Model Embedding untuk Pengguna dan Produk**
   
      * Dalam pendekatan model-based, brand dan produk direpresentasikan dalam bentuk vektor embedding berdimensi rendah. Representasi ini dirancang untuk menangkap pola preferensi pengguna dan karakteristik produk.
      * Setiap pengguna dan produk memiliki vektor embedding unik yang dipelajari selama proses pelatihan. Selain itu, bias pengguna dan bias produk ditambahkan untuk mengakomodasi preferensi individual.
      * Dropout (contohnya dengan rate 0.2) diterapkan pada embedding untuk mengurangi risiko overfitting. Embedding untuk pengguna (brand) dan produk diinisialisasi menggunakan **layers.Embedding**. Regularisasi L2 diterapkan untuk mencegah overfitting, sementara dropout dengan rate 0.2 digunakan untuk meningkatkan generalisasi.
   
-  **2. Perhitungan Prediksi**
+  2. **Perhitungan Prediksi**
   
      * Prediksi preferensi dihitung dengan melakukan *dot product* antara embedding pengguna dan produk.
      * Hasil *dot product* ini ditambahkan dengan bias pengguna dan bias produk.
      * Fungsi aktivasi sigmoid digunakan untuk memastikan nilai prediksi berada dalam rentang 0 hingga 1.
   
-  **3. Pelatihan Model**
+  3. **Pelatihan Model**
   
      * Model dilatih menggunakan data interaksi yang mencakup pasangan pengguna dan produk, serta rating yang diberikan.
      * Tahapan utama nya meliputi:
@@ -554,19 +557,19 @@ Pendekatan ini memungkinkan rekomendasi yang relevan dan personal dengan memanfa
 
 - **Kelebihan Collaborative Filtering**
   
-  **1. Personalisasi Rekomendasi:** Sistem ini berhasil memberikan rekomendasi yang personal berdasarkan preferensi pengguna lain yang memiliki pola interaksi serupa, sehingga relevansi produk yang direkomendasikan menjadi lebih tinggi.
-  **2. Tidak Memerlukan Data Produk yang Mendalam:** Collaborative Filtering hanya memanfaatkan pola interaksi (seperti rating atau klik) tanpa memerlukan informasi mendalam tentang produk, sehingga bisa digunakan pada dataset dengan metadata produk yang terbatas.
-  **3. Kemampuan Menangkap Tren:** Model ini mampu mengidentifikasi produk yang sedang populer di antara pengguna dengan preferensi serupa, menjadikan rekomendasi lebih dinamis dan sesuai dengan tren terkini.
-  **4. Efektif pada Dataset yang Luas:** Dengan jumlah pengguna dan produk yang besar, pendekatan ini semakin akurat karena pola kesamaan antar pengguna dan produk dapat teridentifikasi lebih baik.
-  **5. Rekomendasi Bervariasi:** Rekomendasi yang diberikan mencakup beragam kategori produk, seperti perawatan kulit, perawatan tubuh, dan kosmetik, yang sesuai dengan berbagai kebutuhan pengguna.
+  1. **Personalisasi Rekomendasi:** Sistem ini berhasil memberikan rekomendasi yang personal berdasarkan preferensi pengguna lain yang memiliki pola interaksi serupa, sehingga relevansi produk yang direkomendasikan menjadi lebih tinggi.
+  2. **Tidak Memerlukan Data Produk yang Mendalam:** Collaborative Filtering hanya memanfaatkan pola interaksi (seperti rating atau klik) tanpa memerlukan informasi mendalam tentang produk, sehingga bisa digunakan pada dataset dengan metadata produk yang terbatas.
+  3. **Kemampuan Menangkap Tren:** Model ini mampu mengidentifikasi produk yang sedang populer di antara pengguna dengan preferensi serupa, menjadikan rekomendasi lebih dinamis dan sesuai dengan tren terkini.
+  4. **Efektif pada Dataset yang Luas:** Dengan jumlah pengguna dan produk yang besar, pendekatan ini semakin akurat karena pola kesamaan antar pengguna dan produk dapat teridentifikasi lebih baik.
+  5. **Rekomendasi Bervariasi:** Rekomendasi yang diberikan mencakup beragam kategori produk, seperti perawatan kulit, perawatan tubuh, dan kosmetik, yang sesuai dengan berbagai kebutuhan pengguna.
 
 - **Kekurangan Collaborative Filtering:**
   
-  **1. Cold-Start Problem:** Sistem kesulitan memberikan rekomendasi untuk pengguna atau produk baru karena belum memiliki interaksi historis (data awal).
-  **2. Sparse Data Issue:** Jika dataset interaksi terlalu jarang (misalnya, banyak produk yang belum pernah diinteraksikan oleh pengguna), performa model bisa menurun karena kesulitan menemukan pola kesamaan.
-  **3. Computational Complexity:** Pada dataset yang sangat besar, seperti jutaan pengguna dan produk, proses komputasi untuk menghitung kesamaan antar pengguna atau produk bisa menjadi intensif.
-  **4. Kurang Responsif terhadap Perubahan Preferensi:** Sistem ini lebih mengandalkan data historis sehingga memerlukan waktu untuk menyesuaikan jika preferensi pengguna berubah secara signifikan.
-  **5. Tidak Mempertimbangkan Karakteristik Produk:** Pendekatan ini hanya fokus pada pola interaksi dan tidak memperhitungkan atribut produk (misalnya, harga), sehingga bisa mengabaikan kebutuhan spesifik pengguna.
+  1. **Cold-Start Problem:** Sistem kesulitan memberikan rekomendasi untuk pengguna atau produk baru karena belum memiliki interaksi historis (data awal).
+  2. **Sparse Data Issue:** Jika dataset interaksi terlalu jarang (misalnya, banyak produk yang belum pernah diinteraksikan oleh pengguna), performa model bisa menurun karena kesulitan menemukan pola kesamaan.
+  3. **Computational Complexity:** Pada dataset yang sangat besar, seperti jutaan pengguna dan produk, proses komputasi untuk menghitung kesamaan antar pengguna atau produk bisa menjadi intensif.
+  4. **Kurang Responsif terhadap Perubahan Preferensi:** Sistem ini lebih mengandalkan data historis sehingga memerlukan waktu untuk menyesuaikan jika preferensi pengguna berubah secara signifikan.
+  5. **Tidak Mempertimbangkan Karakteristik Produk:** Pendekatan ini hanya fokus pada pola interaksi dan tidak memperhitungkan atribut produk (misalnya, harga), sehingga bisa mengabaikan kebutuhan spesifik pengguna.
 
 ## Evaluation
 ### 1. Evaluasi Model Content-Based Filtering
