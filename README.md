@@ -472,6 +472,7 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
 - **Fungsi Rekomendasi Produk**
   
   * Fungsi **product\_recommendation** dibuat untuk menghasilkan rekomendasi berbasis konten, dengan menampilkan daftar produk yang mirip dengan produk yang pernah dilihat atau dibeli oleh pengguna. Output dari fungsi ini berupa **Top-N recommendation**, di mana jumlah rekomendasi dapat diatur sesuai kebutuhan melalui parameter k. Fungsi ini mengidentifikasi sejumlah produk teratas dengan nilai kemiripan tertinggi terhadap produk yang diberikan sebagai input.
+    
   * Untuk implementasi yang efisien, dengan mengimplementasikan fungsi `argpartition()` yang digunakan untuk mengekstrak nilai kemiripan tertinggi dari matriks Cosine Similarity. Nilai-nilai tersebut kemudian diurutkan berdasarkan bobot kemiripan dari yang paling tinggi ke rendah dan disimpan dalam variabel closest. Untuk menghindari duplikasi dalam hasil, judul buku yang dijadikan acuan (input) akan dihapus dari daftar rekomendasi agar tidak muncul kembali dalam hasil rekomendasi yang diberikan. Produk yang dijadikan input akan dikeluarkan (dihapus) dari hasil rekomendasi untuk menghindari duplikasi. Dengan pendekatan ini, sistem mampu memberikan rekomendasi yang relevan berdasarkan fitur dan karakteristik produk dalam dataset.
 
 - **Output Rekomendasi**
@@ -485,11 +486,11 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
   
 - **Kelebihan Content-based Filtering**
   
-  1. **Personalized Recommendations**: Rekomendasi berbasis kesukaan pengguna terhadap produk tertentu, sehingga hasil lebih relevan dan sesuai dengan preferensi individu.
-  2. **Tidak Membutuhkan Data Pengguna Lain**: Hanya bergantung pada data konten produk, sehingga tetap berfungsi meskipun hanya ada satu pengguna dalam sistem.
-  3. **Fleksibilitas Fitur Produk**: Dapat memanfaatkan berbagai jenis atribut produk, seperti deskripsi, kategori, atau fitur tambahan, untuk menghasilkan rekomendasi yang lebih akurat.
-  4. **Skalabilitas pada Dataset Baru**: Model dapat dengan mudah merekomendasikan produk baru selama produk tersebut memiliki informasi konten yang lengkap.
-  5. **Menghindari Cold Start pada Pengguna**: Pengguna baru tetap mendapatkan rekomendasi berbasis produk yang mereka eksplorasi, tanpa perlu menunggu data interaksi yang banyak.
+  a. **Personalized Recommendations**: Rekomendasi berbasis kesukaan pengguna terhadap produk tertentu, sehingga hasil lebih relevan dan sesuai dengan preferensi individu.
+  b. **Tidak Membutuhkan Data Pengguna Lain**: Hanya bergantung pada data konten produk, sehingga tetap berfungsi meskipun hanya ada satu pengguna dalam sistem.
+  c. **Fleksibilitas Fitur Produk**: Dapat memanfaatkan berbagai jenis atribut produk, seperti deskripsi, kategori, atau fitur tambahan, untuk menghasilkan rekomendasi yang lebih akurat.
+  d. **Skalabilitas pada Dataset Baru**: Model dapat dengan mudah merekomendasikan produk baru selama produk tersebut memiliki informasi konten yang lengkap.
+  e. **Menghindari Cold Start pada Pengguna**: Pengguna baru tetap mendapatkan rekomendasi berbasis produk yang mereka eksplorasi, tanpa perlu menunggu data interaksi yang banyak.
   
 - **Kekurangan Content-Based Filtering**
   
@@ -545,7 +546,7 @@ Collaborative Filtering adalah pendekatan sistem rekomendasi yang memanfaatkan p
 
 - **Manfaat Collaborative Filtering**
 
-Pendekatan ini memungkinkan rekomendasi yang relevan dan personal dengan memanfaatkan pola kolektif dari interaksi pengguna. Dengan mengandalkan kesamaan preferensi antar pengguna, Collaborative Filtering dapat memberikan rekomendasi bahkan untuk produk yang tidak memiliki deskripsi atau metadata lengkap, menjadikannya ideal untuk dataset besar dan dinamis.
+  Pendekatan ini memungkinkan rekomendasi yang relevan dan personal dengan memanfaatkan pola kolektif dari interaksi pengguna. Dengan mengandalkan kesamaan preferensi antar pengguna, Collaborative Filtering dapat memberikan rekomendasi bahkan untuk produk yang tidak memiliki deskripsi atau metadata lengkap, menjadikannya ideal untuk dataset besar dan dinamis.
 
 - **Output Rekomendasi**
   
