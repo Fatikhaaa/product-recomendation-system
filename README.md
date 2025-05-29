@@ -486,11 +486,11 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
   
 - **Kelebihan Content-based Filtering**
   
-  **1. Personalized Recommendations**: Rekomendasi berbasis kesukaan pengguna terhadap produk tertentu, sehingga hasil lebih relevan dan sesuai dengan preferensi individu.
-  **2. Tidak Membutuhkan Data Pengguna Lain**: Hanya bergantung pada data konten produk, sehingga tetap berfungsi meskipun hanya ada satu pengguna dalam sistem.
-  **3. Fleksibilitas Fitur Produk**: Dapat memanfaatkan berbagai jenis atribut produk, seperti deskripsi, kategori, atau fitur tambahan, untuk menghasilkan rekomendasi yang lebih akurat.
-  **4. Skalabilitas pada Dataset Baru**: Model dapat dengan mudah merekomendasikan produk baru selama produk tersebut memiliki informasi konten yang lengkap.
-  **5. Menghindari Cold Start pada Pengguna**: Pengguna baru tetap mendapatkan rekomendasi berbasis produk yang mereka eksplorasi, tanpa perlu menunggu data interaksi yang banyak.
+  1. **Personalized Recommendations**: Rekomendasi berbasis kesukaan pengguna terhadap produk tertentu, sehingga hasil lebih relevan dan sesuai dengan preferensi individu.
+  2. **Tidak Membutuhkan Data Pengguna Lain**: Hanya bergantung pada data konten produk, sehingga tetap berfungsi meskipun hanya ada satu pengguna dalam sistem.
+  3. **Fleksibilitas Fitur Produk**: Dapat memanfaatkan berbagai jenis atribut produk, seperti deskripsi, kategori, atau fitur tambahan, untuk menghasilkan rekomendasi yang lebih akurat.
+  4. **Skalabilitas pada Dataset Baru**: Model dapat dengan mudah merekomendasikan produk baru selama produk tersebut memiliki informasi konten yang lengkap.
+  5. **Menghindari Cold Start pada Pengguna**: Pengguna baru tetap mendapatkan rekomendasi berbasis produk yang mereka eksplorasi, tanpa perlu menunggu data interaksi yang banyak.
   
 - **Kekurangan Content-Based Filtering**
   
@@ -540,9 +540,9 @@ Collaborative Filtering adalah pendekatan sistem rekomendasi yang memanfaatkan p
     ```
 - **Fungsi Rekomendasi Produk**
   
-  **1. Identifikasi Produk yang Belum Dinilai**: Untuk pengguna tertentu, sistem mengidentifikasi produk-produk yang belum pernah diberi rating.
-  **2. Prediksi Skor untuk Produk Baru**: Produk-produk yang belum dinilai di-encode, kemudian digabungkan dengan data pengguna dalam format array input. Model memprediksi rating untuk setiap produk tersebut, menghasilkan skor prediksi untuk seluruh produk yang belum diinteraksikan oleh pengguna.
-  **3. Pemilihan Rekomendasi Terbaik**: Sistem memilih *Top-N* produk dengan skor prediksi tertinggi untuk direkomendasikan. Misalnya, 10 produk dengan skor tertinggi. Selain itu, sistem juga menampilkan daftar produk dengan rating tertinggi yang sudah dinilai oleh pengguna, untuk memberikan konteks preferensi pengguna terhadap produk sebelumnya.
+  1. **Identifikasi Produk yang Belum Dinilai**: Untuk pengguna tertentu, sistem mengidentifikasi produk-produk yang belum pernah diberi rating.
+  2. **Prediksi Skor untuk Produk Baru**: Produk-produk yang belum dinilai di-encode, kemudian digabungkan dengan data pengguna dalam format array input. Model memprediksi rating untuk setiap produk tersebut, menghasilkan skor prediksi untuk seluruh produk yang belum diinteraksikan oleh pengguna.
+  1. **Pemilihan Rekomendasi Terbaik**: Sistem memilih *Top-N* produk dengan skor prediksi tertinggi untuk direkomendasikan. Misalnya, 10 produk dengan skor tertinggi. Selain itu, sistem juga menampilkan daftar produk dengan rating tertinggi yang sudah dinilai oleh pengguna, untuk memberikan konteks preferensi pengguna terhadap produk sebelumnya.
 
 - **Manfaat Collaborative Filtering**
 
@@ -642,5 +642,6 @@ Proyek ini berhasil menjawab problem statement dan mencapai goals yang telah dit
 
 ## Referensi
 [1] M. R. Az Zayyad, "Sistem Rekomendasi Buku Menggunakan Metode Content-Based Filtering," *Universitas Islam Indonesia*, Yogyakarta, 2021, [Online], Available: https://dspace.uii.ac.id/bitstream/handle/123456789/35942/17523144%20Muhammad%20Rizqi%20Az%20Zayyad.pdf?sequence=1
+
 [2] Dzumiroh Lisniati, "Penerapan Metode Collaborative Filtering Menggunakan Rating Implisit pada Sistem Perekomendasi Pemilihan Film di Rental VCD," *Jurnal ITSMART*, vol. 1, no. 2, pp. 54-56, 2012, DOI: https://jurnal.uns.ac.id/itsmart/article/viewFile/590/542
 
