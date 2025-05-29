@@ -235,7 +235,7 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
 
   ![image](https://github.com/user-attachments/assets/20364d0d-7554-47fc-b191-862902933aa9)
 
-  Kolom-kolom yang terdeteksi memiliki missing value, seperti **price\_by\_combinations**, **active\_date**, **categories**, **rating\_types\_str**, dan **average\_rating\_by\_types**, ternyata tidak terlalu relevan atau berguna untuk analisis dan pemodelan pada tahap selanjutnya. Oleh karena itu, kolom-kolom tersebut telah dilakukan proses dropping pada tahap sebelumnya sebagai langkah penanganan missing value. Dengan demikian, dataset yang digunakan saat ini sudah bersih dari missing value, sehingga dapat lebih optimal dalam mendukung analisis dan pemodelan sistem rekomendasi.
+  Kolom-kolom yang terdeteksi memiliki missing value, seperti **price\_by\_combinations**, **active\_date**, **categories**, **rating\_types\_str**, dan **average\_rating\_by\_types**, ternyata tidak terlalu relevan atau berguna untuk analisis dan pemodelan pada tahap selanjutnya. Oleh karena itu, kolom-kolom tersebut telah dilakukan proses dropping pada tahap sebelumnya dan sekaligus sebagai langkah penanganan missing value. Dengan demikian, dataset yang digunakan saat ini sudah bersih dari missing value, sehingga dapat lebih optimal dalam mendukung analisis dan pemodelan sistem rekomendasi.
   
 - **Memisahkan Nilai Kolom Name Brand**
 
