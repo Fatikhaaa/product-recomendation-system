@@ -128,8 +128,6 @@ products.isnull().sum()
 
 ![image](https://github.com/user-attachments/assets/0eaf4898-a2a8-4580-91b7-4e761eab0ebd)
 
-Berdasarkan hasil pemeriksaan terhadap nilai yang hilang dalam dataset Books.csv, terdapat beberapa kolom yang memiliki nilai yang hilang (missing values). Kolom Book-Author memiliki 2 entri yang kosong, yang menunjukkan bahwa beberapa buku tidak memiliki informasi mengenai penulisnya. Hal yang sama berlaku pada kolom Publisher, yang juga memiliki 2 entri kosong, menandakan bahwa ada beberapa buku yang tidak tercatat penerbitnya. Meskipun jumlahnya relatif kecil, data yang hilang ini perlu ditangani, baik dengan imputasi atau penghapusan data, terutama karena kedua kolom tersebut berperan penting dalam proses rekomendasi berbasis konten. Selain itu, penting untuk memeriksa kolom mana saja yang kosong untuk mempermudah proses imputasi, agar kita dapat memilih metode imputasi yang tepat. Berdasarkan hasil pengecekan, missing value Book Author berada pada kolom 118033 dan 187689 dan missing value Publisher berada pada kolom 128890 dan 129037.
-
 Dari informasi diatas dapat disimpulkan bahwa terdapat missing value pada kolom price_by_combinations, activate_date, categories, rating_types_str, dan average_rating_by_types. Dimana jumlah missing value pada kolom price_by_combinations sebanyak	3549 entri yang kosong, kolom active_date memiliki 2102 entri yang kosong, kolom categories memiliki 4 entri yang kosong, rating_types_str memiliki 75 entri yang kosong, dan kolom average_rating_by_types	memiliki 1846 entri yang kosong. Sehingga untuk tahap selanjutnya perlu dilakukan pananganan missing value, baik dengan imputasi atau penghapusan data, terutama apabila kolom-kolom tersebut berperan penting dalam proses rekomendasi berbasis konten. Selain itu, penting untuk memeriksa kolom mana saja yang kosong untuk mempermudah proses imputasi, agar kita dapat memilih metode imputasi yang tepat. Namun, karena kolom-kolom tersebut tidak relevan untuk sistem rekomendasi berbasis content-based filtering dan collaborative filtering, maka kolom-kolom ini akan dihapus dari dataset sehingga tidak perlu dilakukan penanganan.
 
 ### Pengecekan Data Duplikat
@@ -144,8 +142,7 @@ print(f"Jumlah baris duplikat: {product_duplicate}")
 
 ![image](https://github.com/user-attachments/assets/bed750c9-dc56-49eb-9dbe-a10924732402)
 
-
-Terlihat dari outputnya menampilkan bahwa tidak ada data duplikat, sehingga tidak perlu dilakukan penanganan data duplikat.
+Terlihat dari outputnya menampilkan bahwa tidak ada data duplikat, sehingga tidak perlu dilakukan penanganan data duplikat untuk tahapan selanjutnya.
 
 
 ## Exploratory Data Analysis (EDA)
