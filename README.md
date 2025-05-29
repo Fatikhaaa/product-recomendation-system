@@ -27,7 +27,7 @@ Dengan menganalisis pola seperti rating, pembelian ulang, wishlist, dan ulasan, 
 
 Berdasarkan tujuan yang telah dipaparkan diatas, maka proyek ini memiliki solusi yaitu sebagai berikut:
 - Menerapkan pendekatan **Content-Based Filtering**: Memanfaatkan atribut produk seperti kategori, merek, dan nama produk untuk menemukan kesamaan antar produk. Algoritma yang digunakan meliputi teknik TF-IDF untuk ekstraksi fitur dari teks dan cosine similarity untuk menghitung kesamaan antara produk. Dengan cara ini, sistem dapat merekomendasikan produk yang memiliki karakteristik serupa dengan produk yang disukai atau telah digunakan oleh konsumen.
-- Menerapkan pendekatan **Collaborative Filtering**: Membangun sistem rekomendasi dengan memanfaatkan interaksi pengguna dengan buku (seperti rating atau preferensi eksplisit) untuk menganalisis pola kesamaan antar pengguna dan memberikan rekomendasi buku yang relevan berdasarkan kesamaan preferensi tersebut. Memanfaatkan pola interaksi pengguna seperti pembelian, wishlist, rating, dan ulasan untuk memberikan rekomendasi berdasarkan preferensi pengguna lain yang memiliki pola serupa. Dengan memodelkan hubungan antar pengguna dan produk, serta mengidentifikasi produk yang relevan untuk setiap pengguna. Pendekatan ini sangat berguna dalam memberikan rekomendasi yang tidak secara langsung terlihat melalui atribut produk.
+- Menerapkan pendekatan **Collaborative Filtering**: Membangun sistem rekomendasi dengan memanfaatkan interaksi pengguna dengan produk (seperti rating atau preferensi eksplisit) untuk menganalisis pola kesamaan antar pengguna dan memberikan rekomendasi buku yang relevan berdasarkan kesamaan preferensi tersebut. Memanfaatkan pola interaksi pengguna seperti pembelian, wishlist, rating, dan ulasan untuk memberikan rekomendasi berdasarkan preferensi pengguna lain yang memiliki pola serupa. Dengan memodelkan hubungan antar pengguna dan produk, serta mengidentifikasi produk yang relevan untuk setiap pengguna. Pendekatan ini sangat berguna dalam memberikan rekomendasi yang tidak secara langsung terlihat melalui atribut produk.
 
 
 ## Data Understanding
@@ -88,6 +88,16 @@ Dataset yang digunakan dalam proyek ini mencakup informasi mendetail mengenai pr
 | 16  | total_repurchase_no_count     | 7636           | int64   |
 | 17  | total_repurchase_yes_count    | 7636           | int64   |
 | 18  | total_in_wishlist             | 7636           | int64   |
+
+Berikut ini kode yang digunakan untuk menghitung jumlah row dan column:
+
+```python 
+# Menampilkan jumlah row dan column (ukuran shape)
+products.shape```
+
+![image](https://github.com/user-attachments/assets/20c83898-aeab-496b-b1d9-e8c7a70f0357)
+
+Berdasarkan dari informasi diatas, dapat diketahui bahwa dataset terdiri dari 7636 records data dimana didalamnya berisi 19 fitur.
 
 ### Statistik Deskriptif pada Kolom Numerik
 
