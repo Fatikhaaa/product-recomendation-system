@@ -18,10 +18,10 @@ Berdasarkan uraian yang telah dipaparkan pada latar belakang diatas, maka rumusa
 
 ### Goals
 
-Berdasarkan rumusan masala yang telah dipaparkan di atas, maka proyek penelitian ini memiliki tujuan sebagai berikut:
-1. Menghasilkan sistem rekomendasi berbasis content-based filtering untuk membantu konsumen menemukan produk kecantikan yang sesuai dengan preferensi mereka. Dimana dengan mempertimbangkan atribut produk seperti kategori, merek, dan ulasan guna menghasilkan rekomendasi yang relevan dan dipersonalisasi bagi setiap konsumen.
+Berdasarkan rumusan masalah yang telah dipaparkan di atas, maka proyek penelitian ini memiliki tujuan sebagai berikut:
+1. Menghasilkan sistem rekomendasi berbasis content-based filtering untuk membantu konsumen menemukan produk kecantikan yang sesuai dengan preferensi mereka. Dimana dengan mempertimbangkan atribut produk seperti kategori, merek, dan nama produk guna menghasilkan rekomendasi yang relevan dan dipersonalisasi bagi setiap konsumen.
 2. Mengimplementasikan pendekatan collaborative filtering untuk memberikan rekomendasi produk berdasarkan pola interaksi pengguna lain yang memiliki preferensi serupa.
-Dengan menganalisis pola seperti pembelian ulang, wishlist, dan ulasan, sistem ini bertujuan untuk meningkatkan pengalaman konsumen dengan menyarankan produk yang relevan dan diminati.
+Dengan menganalisis pola seperti rating, pembelian ulang, wishlist, dan ulasan, sistem ini bertujuan untuk meningkatkan pengalaman konsumen dengan menyarankan produk yang relevan dan diminati.
 
 ### Solution Statements
 
