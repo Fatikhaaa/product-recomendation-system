@@ -278,9 +278,9 @@ Berikut ini teknik yang digunakan dalam tahap data preparation:
 
   Tahapan di atas dilakukan untuk mengonversi kolom-kolom data series dari dataset ke dalam bentuk list, yaitu kolom **`brand_name`**, **`product_name`**, dan **`default_category`**. Langkah ini bertujuan untuk mempermudah proses manipulasi data pada tahapan selanjutnya, seperti membuat dataframe baru, mengolah data lebih lanjut, atau melakukan operasi khusus pada elemen-elemen dalam setiap kolom. Dengan mengonversi data series menjadi list, kita dapat:
   
-  1. **Fleksibilitas Pengolahan Data**: List menyediakan fleksibilitas yang lebih besar dibandingkan dengan data series dalam hal iterasi dan penerapan fungsi Python biasa.
-  2. **Kompatibilitas dengan Fungsi dan Algoritma Lain**: Banyak algoritma atau fungsi dalam Python (terutama yang tidak menggunakan Pandas) lebih kompatibel dengan struktur list daripada data series.
-  3. **Mempermudah Transformasi Data**: Untuk langkah-langkah seperti tokenisasi, pembuatan bag-of-words, atau proses lainnya yang memerlukan iterasi per elemen, list mempermudah implementasinya.
+  **1. Fleksibilitas Pengolahan Data**: List menyediakan fleksibilitas yang lebih besar dibandingkan dengan data series dalam hal iterasi dan penerapan fungsi Python biasa.
+  **2. Kompatibilitas dengan Fungsi dan Algoritma Lain**: Banyak algoritma atau fungsi dalam Python (terutama yang tidak menggunakan Pandas) lebih kompatibel dengan struktur list daripada data series.
+  **3. Mempermudah Transformasi Data**: Untuk langkah-langkah seperti tokenisasi, pembuatan bag-of-words, atau proses lainnya yang memerlukan iterasi per elemen, list mempermudah implementasinya.
   Langkah terakhir pada kode tersebut mencetak jumlah elemen dalam setiap list untuk memastikan bahwa semua kolom yang dikonversi memiliki panjang yang sama, sehingga dapat meminimalkan risiko ketidaksesuaian data selama proses pengolahan selanjutnya.
 
 - **Membuat Dataframe baru**
@@ -438,11 +438,11 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
 
 - **Proses Content-Based Filtering**
 
-  1. **Perhitungan Cosine Similarity**
+  **1. Perhitungan Cosine Similarity**
      
      Cosine Similarity digunakan untuk mengukur tingkat kemiripan antar produk berdasarkan representasi fitur dalam ruang vektor. Semakin tinggi nilai Cosine Similarity, semakin mirip dua produk tersebut. Fungsi `cosine_similarity()` digunakan untuk menghitung matriks kesamaan antar produk dalam dataset. Matriks ini menunjukkan hubungan antara semua produk, baik dalam sumbu X maupun Y.
   
-  3. **Penyusunan Matriks Cosine Similarity**
+  **2. Penyusunan Matriks Cosine Similarity**
      
      Hasil perhitungan Cosine Similarity diubah menjadi sebuah DataFrame untuk mempermudah analisis dan pencarian produk-produk yang paling mirip. Baris dan kolom pada DataFrame ini mewakili produk, sementara nilai di dalamnya menunjukkan tingkat kemiripan antar produk.
 
@@ -461,7 +461,7 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
     
     _Matriks ini menunjukkan tingkat kemiripan antar produk berdasarkan fitur konten. Semakin tinggi nilai (mendekati 1), semakin mirip kedua produk tersebut._
   
-  4. **Penyaringan Data**
+  **3. Penyaringan Data**
      
      Produk-produk dengan nilai kemiripan tertinggi disaring sebagai kandidat untuk direkomendasikan kepada pengguna. Hasil ini disesuaikan dengan produk yang sudah pernah diinteraksikan oleh pengguna untuk menghindari duplikasi.
 
@@ -481,36 +481,42 @@ Pendekatan Content-Based Filtering memberikan rekomendasi produk berdasarkan kes
   Berdasarkan output diatas, sistem berhasil merekomendasikan 10 produk teratas dengan kategori produk (default_category) yang sama yaitu 'Face Serum' dan memiliki produk dengan penamaan yang mirip (masih dalam satu rangkaian kategori yang sama yaitu Face Serum).
   
 - **Kelebihan Content-based Filtering**
-  1. **Personalized Recommendations**: Rekomendasi berbasis kesukaan pengguna terhadap produk tertentu, sehingga hasil lebih relevan dan sesuai dengan preferensi individu.
-  2. **Tidak Membutuhkan Data Pengguna Lain**: Hanya bergantung pada data konten produk, sehingga tetap berfungsi meskipun hanya ada satu pengguna dalam sistem.
-  3. **Fleksibilitas Fitur Produk**: Dapat memanfaatkan berbagai jenis atribut produk, seperti deskripsi, kategori, atau fitur tambahan, untuk menghasilkan rekomendasi yang lebih akurat.
-  4. **Skalabilitas pada Dataset Baru**: Model dapat dengan mudah merekomendasikan produk baru selama produk tersebut memiliki informasi konten yang lengkap.
-  5. **Menghindari Cold Start pada Pengguna**: Pengguna baru tetap mendapatkan rekomendasi berbasis produk yang mereka eksplorasi, tanpa perlu menunggu data interaksi yang banyak.
+  
+  **1. Personalized Recommendations**: Rekomendasi berbasis kesukaan pengguna terhadap produk tertentu, sehingga hasil lebih relevan dan sesuai dengan preferensi individu.
+  **2. Tidak Membutuhkan Data Pengguna Lain**: Hanya bergantung pada data konten produk, sehingga tetap berfungsi meskipun hanya ada satu pengguna dalam sistem.
+  **3. Fleksibilitas Fitur Produk**: Dapat memanfaatkan berbagai jenis atribut produk, seperti deskripsi, kategori, atau fitur tambahan, untuk menghasilkan rekomendasi yang lebih akurat.
+  **4. Skalabilitas pada Dataset Baru**: Model dapat dengan mudah merekomendasikan produk baru selama produk tersebut memiliki informasi konten yang lengkap.
+  **5. Menghindari Cold Start pada Pengguna**: Pengguna baru tetap mendapatkan rekomendasi berbasis produk yang mereka eksplorasi, tanpa perlu menunggu data interaksi yang banyak.
   
 - **Kekurangan Content-Based Filtering**
-  1. **Kurangnya Keberagaman Rekomendasi (Over-Specialization)**: Sistem hanya merekomendasikan produk yang sangat mirip dengan yang sudah dipilih atau disukai, sehingga keberagaman produk yang disarankan cenderung rendah.
-  2. **Ketergantungan pada Kualitas Data Konten**: Jika data konten produk tidak lengkap atau tidak relevan, kualitas rekomendasi akan menurun.
-  3. **Tidak Bisa Merekomendasikan Produk Tanpa Interaksi Awal**: Sistem tidak dapat memberikan rekomendasi yang optimal jika pengguna belum memberikan preferensi atau data eksplisit terkait produk tertentu.
-  4. **Cold Start untuk Produk Baru Tanpa Deskripsi yang Memadai**: Produk baru dengan deskripsi yang kurang lengkap akan sulit masuk dalam sistem rekomendasi.
-  5. **Komputasi yang Intensif**: Membutuhkan perhitungan seperti Cosine Similarity yang memerlukan banyak sumber daya untuk dataset besar, terutama saat membuat matriks kemiripan.
-  6. **Sulit Menangkap Preferensi Kompleks**: Tidak dapat memahami preferensi yang tidak tersurat atau pola interaksi pengguna yang lebih kompleks (misalnya, konteks penggunaan).
+  
+  **1. Kurangnya Keberagaman Rekomendasi (Over-Specialization)**: Sistem hanya merekomendasikan produk yang sangat mirip dengan yang sudah dipilih atau disukai, sehingga keberagaman produk yang disarankan cenderung rendah.
+  **2. Ketergantungan pada Kualitas Data Konten**: Jika data konten produk tidak lengkap atau tidak relevan, kualitas rekomendasi akan menurun.
+  **3. Tidak Bisa Merekomendasikan Produk Tanpa Interaksi Awal**: Sistem tidak dapat memberikan rekomendasi yang optimal jika pengguna belum memberikan preferensi atau data eksplisit terkait produk tertentu.
+  **4. Cold Start untuk Produk Baru Tanpa Deskripsi yang Memadai**: Produk baru dengan deskripsi yang kurang lengkap akan sulit masuk dalam sistem rekomendasi.
+  **5. Komputasi yang Intensif**: Membutuhkan perhitungan seperti Cosine Similarity yang memerlukan banyak sumber daya untuk dataset besar, terutama saat membuat matriks kemiripan.
+  **6. Sulit Menangkap Preferensi Kompleks**: Tidak dapat memahami preferensi yang tidak tersurat atau pola interaksi pengguna yang lebih kompleks (misalnya, konteks penggunaan).
 
 ### 2. Collaborative Filtering
 
 Collaborative Filtering adalah pendekatan sistem rekomendasi yang memanfaatkan pola interaksi pengguna dengan produk. Pendekatan ini bekerja dengan memprediksi preferensi pengguna terhadap produk yang belum mereka interaksikan, berdasarkan pola interaksi pengguna lain yang memiliki preferensi serupa. Collaborative Filtering secara umum dibagi menjadi dua jenis utama: **memory-based** (berbasis memori) dan **model-based** (berbasis model). Dalam implementasi modern, teknik berbasis model dengan pembelajaran mendalam sering digunakan untuk menghasilkan rekomendasi yang lebih akurat.
 
 - **Proses Collaborative Filtering**
-  1. **Model Embedding untuk Pengguna dan Produk**
+  
+  **1. Model Embedding untuk Pengguna dan Produk**
+  
      * Dalam pendekatan model-based, brand dan produk direpresentasikan dalam bentuk vektor embedding berdimensi rendah. Representasi ini dirancang untuk menangkap pola preferensi pengguna dan karakteristik produk.
      * Setiap pengguna dan produk memiliki vektor embedding unik yang dipelajari selama proses pelatihan. Selain itu, bias pengguna dan bias produk ditambahkan untuk mengakomodasi preferensi individual.
      * Dropout (contohnya dengan rate 0.2) diterapkan pada embedding untuk mengurangi risiko overfitting. Embedding untuk pengguna (brand) dan produk diinisialisasi menggunakan **layers.Embedding**. Regularisasi L2 diterapkan untuk mencegah overfitting, sementara dropout dengan rate 0.2 digunakan untuk meningkatkan generalisasi.
   
-  3. **Perhitungan Prediksi**
+  **2. Perhitungan Prediksi**
+  
      * Prediksi preferensi dihitung dengan melakukan *dot product* antara embedding pengguna dan produk.
      * Hasil *dot product* ini ditambahkan dengan bias pengguna dan bias produk.
      * Fungsi aktivasi sigmoid digunakan untuk memastikan nilai prediksi berada dalam rentang 0 hingga 1.
   
-  4. **Pelatihan Model**
+  **3. Pelatihan Model**
+  
      * Model dilatih menggunakan data interaksi yang mencakup pasangan pengguna dan produk, serta rating yang diberikan.
      * Tahapan utama nya meliputi:
        - Input data: x_train berisi pasangan user_id dan product_id, serta y_train berisi nilai interaksi.
@@ -529,15 +535,17 @@ Collaborative Filtering adalah pendekatan sistem rekomendasi yang memanfaatkan p
     ) 
     ```
 - **Fungsi Rekomendasi Produk**
-  1. **Identifikasi Produk yang Belum Dinilai**: Untuk pengguna tertentu, sistem mengidentifikasi produk-produk yang belum pernah diberi rating.
-  2. **Prediksi Skor untuk Produk Baru**: Produk-produk yang belum dinilai di-encode, kemudian digabungkan dengan data pengguna dalam format array input. Model memprediksi rating untuk setiap produk tersebut, menghasilkan skor prediksi untuk seluruh produk yang belum diinteraksikan oleh pengguna.
-  3. **Pemilihan Rekomendasi Terbaik**: Sistem memilih *Top-N* produk dengan skor prediksi tertinggi untuk direkomendasikan. Misalnya, 10 produk dengan skor tertinggi. Selain itu, sistem juga menampilkan daftar produk dengan rating tertinggi yang sudah dinilai oleh pengguna, untuk memberikan konteks preferensi pengguna terhadap produk sebelumnya.
+  
+  **1. Identifikasi Produk yang Belum Dinilai**: Untuk pengguna tertentu, sistem mengidentifikasi produk-produk yang belum pernah diberi rating.
+  **2. Prediksi Skor untuk Produk Baru**: Produk-produk yang belum dinilai di-encode, kemudian digabungkan dengan data pengguna dalam format array input. Model memprediksi rating untuk setiap produk tersebut, menghasilkan skor prediksi untuk seluruh produk yang belum diinteraksikan oleh pengguna.
+  **3. Pemilihan Rekomendasi Terbaik**: Sistem memilih *Top-N* produk dengan skor prediksi tertinggi untuk direkomendasikan. Misalnya, 10 produk dengan skor tertinggi. Selain itu, sistem juga menampilkan daftar produk dengan rating tertinggi yang sudah dinilai oleh pengguna, untuk memberikan konteks preferensi pengguna terhadap produk sebelumnya.
 
 - **Manfaat Collaborative Filtering**
 
 Pendekatan ini memungkinkan rekomendasi yang relevan dan personal dengan memanfaatkan pola kolektif dari interaksi pengguna. Dengan mengandalkan kesamaan preferensi antar pengguna, Collaborative Filtering dapat memberikan rekomendasi bahkan untuk produk yang tidak memiliki deskripsi atau metadata lengkap, menjadikannya ideal untuk dataset besar dan dinamis.
 
 - **Output Rekomendasi**
+  
   Setelah pelatihan, model dapat memberikan Top-N recommendation produk berdasarkan prediksi rating. Sebagai contoh, rekomendasi produk untuk pengguna dengan ID **302** berhasil dihasilkan melalui pendekatan **Collaborative Filtering**. Sistem ini tidak hanya merekomendasikan produk baru yang relevan tetapi juga memberikan konteks preferensi pengguna dengan menampilkan produk yang sebelumnya pernah diinteraksikan. Berdasarkan hasil tersebut, pengguna sebelumnya telah menunjukkan ketertarikan pada produk seperti *Renew You Toner Essence* dengan rata-rata rating **4.33**, yang menjadi indikasi preferensi pengguna terhadap produk perawatan kulit.
   Dari rekomendasi yang dihasilkan, beberapa produk unggulan seperti *Body Wash PATCHOULI* dan *Age Miracle Hya-Retinol Ultimate Glow Essence* memiliki rating tinggi, mencapai **5.0**, menunjukkan tingkat kesesuaian yang sangat baik dengan preferensi pengguna. Selain itu, rekomendasi lain seperti *Song of The Youth* dengan rating **4.66** dan *Hand & Nature White Musk Hand Cream* dengan rating **4.75** juga memperlihatkan variasi yang kaya namun tetap relevan dalam kategori yang serupa.
   Keberhasilan ini mencerminkan kemampuan sistem untuk menangkap pola interaksi pengguna dengan produk secara mendalam, sehingga menghasilkan rekomendasi yang lebih personal dan beragam. Dengan memanfaatkan kesamaan preferensi antar pengguna, pendekatan ini menunjukkan efisiensi dalam mengidentifikasi produk yang sesuai dengan kebutuhan pengguna, sekaligus meningkatkan pengalaman dan kepuasan mereka terhadap sistem rekomendasi.
@@ -545,18 +553,20 @@ Pendekatan ini memungkinkan rekomendasi yang relevan dan personal dengan memanfa
   ![image](https://github.com/user-attachments/assets/effbf8ca-11c7-4e9b-a797-d0988eb990fd)
 
 - **Kelebihan Collaborative Filtering**
-  1. **Personalisasi Rekomendasi:** Sistem ini berhasil memberikan rekomendasi yang personal berdasarkan preferensi pengguna lain yang memiliki pola interaksi serupa, sehingga relevansi produk yang direkomendasikan menjadi lebih tinggi.
-  2. **Tidak Memerlukan Data Produk yang Mendalam:** Collaborative Filtering hanya memanfaatkan pola interaksi (seperti rating atau klik) tanpa memerlukan informasi mendalam tentang produk, sehingga bisa digunakan pada dataset dengan metadata produk yang terbatas.
-  3. **Kemampuan Menangkap Tren:** Model ini mampu mengidentifikasi produk yang sedang populer di antara pengguna dengan preferensi serupa, menjadikan rekomendasi lebih dinamis dan sesuai dengan tren terkini.
-  4. **Efektif pada Dataset yang Luas:** Dengan jumlah pengguna dan produk yang besar, pendekatan ini semakin akurat karena pola kesamaan antar pengguna dan produk dapat teridentifikasi lebih baik.
-  5. **Rekomendasi Bervariasi:** Rekomendasi yang diberikan mencakup beragam kategori produk, seperti perawatan kulit, perawatan tubuh, dan kosmetik, yang sesuai dengan berbagai kebutuhan pengguna.
+  
+  **1. Personalisasi Rekomendasi:** Sistem ini berhasil memberikan rekomendasi yang personal berdasarkan preferensi pengguna lain yang memiliki pola interaksi serupa, sehingga relevansi produk yang direkomendasikan menjadi lebih tinggi.
+  **2. Tidak Memerlukan Data Produk yang Mendalam:** Collaborative Filtering hanya memanfaatkan pola interaksi (seperti rating atau klik) tanpa memerlukan informasi mendalam tentang produk, sehingga bisa digunakan pada dataset dengan metadata produk yang terbatas.
+  **3. Kemampuan Menangkap Tren:** Model ini mampu mengidentifikasi produk yang sedang populer di antara pengguna dengan preferensi serupa, menjadikan rekomendasi lebih dinamis dan sesuai dengan tren terkini.
+  **4. Efektif pada Dataset yang Luas:** Dengan jumlah pengguna dan produk yang besar, pendekatan ini semakin akurat karena pola kesamaan antar pengguna dan produk dapat teridentifikasi lebih baik.
+  **5. Rekomendasi Bervariasi:** Rekomendasi yang diberikan mencakup beragam kategori produk, seperti perawatan kulit, perawatan tubuh, dan kosmetik, yang sesuai dengan berbagai kebutuhan pengguna.
 
 - **Kekurangan Collaborative Filtering:**
-  1. **Cold-Start Problem:** Sistem kesulitan memberikan rekomendasi untuk pengguna atau produk baru karena belum memiliki interaksi historis (data awal).
-  2. **Sparse Data Issue:** Jika dataset interaksi terlalu jarang (misalnya, banyak produk yang belum pernah diinteraksikan oleh pengguna), performa model bisa menurun karena kesulitan menemukan pola kesamaan.
-  3. **Computational Complexity:** Pada dataset yang sangat besar, seperti jutaan pengguna dan produk, proses komputasi untuk menghitung kesamaan antar pengguna atau produk bisa menjadi intensif.
-  4. **Kurang Responsif terhadap Perubahan Preferensi:** Sistem ini lebih mengandalkan data historis sehingga memerlukan waktu untuk menyesuaikan jika preferensi pengguna berubah secara signifikan.
-  5. **Tidak Mempertimbangkan Karakteristik Produk:** Pendekatan ini hanya fokus pada pola interaksi dan tidak memperhitungkan atribut produk (misalnya, harga), sehingga bisa mengabaikan kebutuhan spesifik pengguna.
+  
+  **1. Cold-Start Problem:** Sistem kesulitan memberikan rekomendasi untuk pengguna atau produk baru karena belum memiliki interaksi historis (data awal).
+  **2. Sparse Data Issue:** Jika dataset interaksi terlalu jarang (misalnya, banyak produk yang belum pernah diinteraksikan oleh pengguna), performa model bisa menurun karena kesulitan menemukan pola kesamaan.
+  **3. Computational Complexity:** Pada dataset yang sangat besar, seperti jutaan pengguna dan produk, proses komputasi untuk menghitung kesamaan antar pengguna atau produk bisa menjadi intensif.
+  **4. Kurang Responsif terhadap Perubahan Preferensi:** Sistem ini lebih mengandalkan data historis sehingga memerlukan waktu untuk menyesuaikan jika preferensi pengguna berubah secara signifikan.
+  **5. Tidak Mempertimbangkan Karakteristik Produk:** Pendekatan ini hanya fokus pada pola interaksi dan tidak memperhitungkan atribut produk (misalnya, harga), sehingga bisa mengabaikan kebutuhan spesifik pengguna.
 
 ## Evaluation
 ### 1. Evaluasi Model Content-Based Filtering
@@ -564,12 +574,15 @@ Pendekatan ini memungkinkan rekomendasi yang relevan dan personal dengan memanfa
 Dalam model Content-Based Filtering, digunakan tiga evaluation metrix utama untuk mengukur performa sistem rekomendasi buku berbasis kemiripan konten, yaitu Precision, Recall, dan F1-score. Metrik-metrik ini dipilih karena sesuai untuk mengukur kualitas model dalam tugas klasifikasi biner, yakni memprediksi apakah sebuah pasangan buku memiliki kemiripan tinggi (positif) atau tidak (negatif).
 
 - **Precision**
+  
   Precision merupakan metrik yang digunakan untuk mengukur rasio antara jumlah item relevan yang berhasil direkomendasikan dengan jumlah total item yang direkomendasikan oleh model. Precision dihitung menggunakan rumus berikut:
+  
   ![image](https://github.com/user-attachments/assets/c1ee63b6-d223-4463-a7ec-c2c72ef26a8f)
 
   Dalam konteks ini, Precision menunjukkan seberapa baik model dalam menghindari rekomendasi item yang tidak relevan. Semakin tinggi nilai precision, semakin relevan rekomendasi yang dihasilkan oleh model.
   
 - **Recall**
+  
   Recall mengukur rasio antara jumlah item relevan yang berhasil direkomendasikan dengan total item relevan yang seharusnya direkomendasikan. Recall dihitung menggunakan rumus berikut:
   
   ![image](https://github.com/user-attachments/assets/777b35bf-26df-444a-b546-b787acf0d6cf)
@@ -577,7 +590,9 @@ Dalam model Content-Based Filtering, digunakan tiga evaluation metrix utama untu
   Recall fokus pada kemampuan model menemukan sebanyak mungkin item relevan. Semakin tinggi nilai recall, semakin banyak item relevan yang ditemukan oleh sistem.
 
 - **F1-Score**
+  
   F1-Score adalah rata-rata harmonik dari Precision dan Recall, yang memberikan ukuran keseimbangan antara keduanya. F1-Score dihitung menggunakan rumus berikut:
+  
   ![image](https://github.com/user-attachments/assets/7812922f-4eef-48c9-9549-33d549f50a6e)
 
   F1-Score sangat penting ketika ada ketidakseimbangan antara jumlah item relevan dan tidak relevan, karena memastikan keseimbangan antara akurasi rekomendasi dan cakupan item relevan. Nilai F1-Score yang tinggi menunjukkan bahwa model tidak hanya akurat tetapi juga mampu merekomendasikan item relevan dalam jumlah yang cukup.
@@ -585,20 +600,23 @@ Dalam model Content-Based Filtering, digunakan tiga evaluation metrix utama untu
   Sebelum menghitung ketiga metrik TERSEBUT, perlu disiapkan data **ground_truth** yang menjadi acuan evaluasi. Dalam proyek ini, data ground truth dibentuk berdasarkan nilai kemiripan antar item (produk) menggunakan teknik cosine similarity. Setiap baris dan kolom mewakili nama produk, dan nilai dalam sel menunjukkan apakah dua produk tersebut dianggap mirip atau tidak. Ambang batas (threshold) sebesar 0.5 digunakan untuk menentukan apakah dua item dianggap mirip. Jika nilai kemiripan ≥ threshold, item dianggap mirip/similar (nilai 1) dan sebaliknya jika kurang, item dianggap tidak mirip/not similar (nilai 0). Nilai threshold ini ditentukan berdasarkan kebutuhan dan karakteristik data setelah mengamati hasil rekomendasi sebelumnya. Proses pembuatan ground truth dilakukan dengan fungsi np.where() dari library NumPy. Matriks ini kemudian diubah ke dalam bentuk DataFrame, dengan nama produk digunakan sebagai indeks pada baris dan kolom. Setelah ground truth terbentuk, langkah selanjutnya adalah mengevaluasi performa model menggunakan metrik precision, recall, dan f1-score.
   Proses evaluasi dimulai dengan data similarity matrix dan ground truth diubah ke dalam bentuk array 1 dimensi (flattened) agar mudah dibandingkan. Prediksi model dikonversi menjadi biner (0 atau 1) berdasarkan threshold. Fungsi precision_recall_fscore_support dari pustaka Scikit-learn digunakan untuk menghitung metrik evaluasi, dengan parameter average='binary' dan zero_division=1. Dengan pendekatan ini, evaluasi menggunakan ketiga metrik tersebut memberikan pandangan menyeluruh mengenai kekuatan dan kelemahan sistem Content-Based Filtering yang dikembangkan. Adapun hasil evaluasi yang diperoleh menunjukkan performa model sebagai berikut:
 
-![image](https://github.com/user-attachments/assets/2eb8cf40-6347-408e-bcd7-addfb60ad1fb)
+  ![image](https://github.com/user-attachments/assets/2eb8cf40-6347-408e-bcd7-addfb60ad1fb)
 
 - **Hasil Evaluasi dengan Precision, Recall, dan F1-score**
+  
   Pada hasil evaluasi, ketiga metrik menunjukkan nilai yang sempurna yaitu sebesar 1.00. Hal ini menunjukkan bahwa model berhasil memberikan semua rekomendasi produk yang benar-benar relevan (precision = 1.00), sekaligus tidak melewatkan produk yang relevan sama sekali (recall = 1.00). Nilai F1-score yang sempurna (nilai 1.0) menunjukkan keseimbangan ideal antara precision dan recall. Nilai evaluasi ini mengindikasikan bahwa sistem rekomendasi bekerja sangat baik pada subset data yang diuji, menghasilkan rekomendasi yang sangat akurat dan komprehensif.
 
 ### 2. Evaluasi Model Collaborative Filtering
 
 Dalam proyek ini, evaluasi performa model rekomendasi menggunakan pendekatan Collaborative Filtering dilakukan dengan metrik Root Mean Squared Error (RMSE). RMSE adalah metrik yang umum digunakan untuk mengukur tingkat kesalahan dalam prediksi yang dihasilkan oleh model. Dalam konteks sistem rekomendasi, RMSE mengukur seberapa jauh prediksi rating yang dihasilkan oleh model dibandingkan dengan rating aktual yang diberikan oleh pengguna.
+
 - **Formula RMSE**
   
   Root Mean Squared Error (RMSE) adalah metrik yang digunakan untuk mengukur tingkat kesalahan rata-rata antara nilai yang diprediksi oleh model dengan nilai aktual. RMSE dihitung dengan mengkuadratkan selisih antara prediksi dan aktual, merata-ratakannya, lalu mengambil akar kuadratnya. Nilai RMSE yang lebih rendah menunjukkan model memiliki akurasi prediksi yang lebih baik. RMSE dihitung menggunakan rumus berikut:
   ![image](https://github.com/user-attachments/assets/dbc949c0-7d05-4676-8a1c-3d679490b4b8)
 
   Keterangan :
+  
   ![image](https://github.com/user-attachments/assets/ba27b83c-a823-46bc-942a-e234189ba211)
 
   Proses Perhitungan RMSE yaitu dengan menghitung selisih antara rating aktual dan prediksi dihitung untuk setiap interaksi pengguna dengan produk. Lalu, setiap selisih dikuadratkan untuk memastikan nilai negatif tidak mempengaruhi hasil dan memberikan bobot lebih pada kesalahan besar. Kemudian, nilai kuadrat selisih dirata-ratakan, menghasilkan Mean Squared Error (MSE). Dan terakhir, akar kuadrat diambil dari nilai MSE untuk mengembalikan kesalahan ke skala asli rating, sehingga lebih mudah dipahami. **RMSE memberikan bobot lebih besar pada kesalahan yang lebih besar, sehingga nilai RMSE yang lebih rendah menunjukkan kinerja model yang lebih baik dalam merekomendasikan produk sesuai preferensi pengguna**.
