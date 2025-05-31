@@ -645,3 +645,5 @@ Proyek ini berhasil menjawab problem statement dan mencapai goals yang telah dit
 
 [2] Dzumiroh Lisniati, "Penerapan Metode Collaborative Filtering Menggunakan Rating Implisit pada Sistem Perekomendasi Pemilihan Film di Rental VCD," *Jurnal ITSMART*, vol. 1, no. 2, pp. 54-56, 2012, DOI: https://jurnal.uns.ac.id/itsmart/article/viewFile/590/542
 
+## Hasil Review
+![Screenshot_20250531_124502_Chrome 1](https://github.com/user-attachments/assets/0c4e503f-9a55-4da7-8f6a-3da10f79e9cc)
